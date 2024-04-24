@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: cat <<< "${{ github.event.head_commit.message }}"
-      - run: echo "${{ github.event.pull_request.labels.*.name }}"
-      - if: ${{ ! contains(github.event.head_commit.message, '[test]') }}
+      - run: cat <<< "${{ github.event.pull_request.labels.*.name }}"
+      - if: |
+          ${{ ! contains(github.event.head_commit.message, '[test]') }} &&
+          ${{ ! contains(github.event.pull_request.labels.*.name, 'test') }}
         run: echo "Hello World"
