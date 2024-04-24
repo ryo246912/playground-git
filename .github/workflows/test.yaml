@@ -1,0 +1,11 @@
+name: test-workflow
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - if: ${{ ! contains(github.event.head_commit.message, '[test]') }}
+        run: echo "Hello World"
