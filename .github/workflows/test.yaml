@@ -1,11 +1,13 @@
 name: test-workflow
 on:
   workflow_dispatch:
-  pull_request:
+  push:
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - run: cat <<< "${{ github.event.head_commit.message }}"
+      - run: echo "${{ github.event.pull_request.labels.*.name }}"
       - if: ${{ ! contains(github.event.head_commit.message, '[test]') }}
         run: echo "Hello World"
