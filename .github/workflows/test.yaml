@@ -2,8 +2,8 @@ name: test-workflow
 on:
   workflow_dispatch:
   push:
-    branches:
-      - master
+    # branches:
+    #   - master
   pull_request:
 
 # concurrency:
@@ -13,6 +13,10 @@ jobs:
   dump_contexts_to_log:
     runs-on: ubuntu-latest
     steps:
+      - name: ref_name
+        env:
+          REF: ${{ github.head_ref || github.ref_name }}"
+        run: echo "$REF"
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
