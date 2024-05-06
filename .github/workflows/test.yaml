@@ -14,9 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ref_name
-        env:
-          REF: ${{ github.head_ref || github.ref_name }}"
-        run: echo "$REF"
+        run: echo "${{ github.head_ref || github.ref_name }}"
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
