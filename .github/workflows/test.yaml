@@ -5,6 +5,10 @@ on:
     # branches:
     #   - master
   pull_request:
+  issues:
+    types:
+      - opened
+      - reopened
 
 # concurrency:
 #   group: "${{ github.workflow }} @ ${{ github.head_ref || github.ref }}"
